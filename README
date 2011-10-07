@@ -1,0 +1,118 @@
+NAME
+    HTML::HTML5::Builder - erect some scaffolding for your documents
+
+SYNOPSIS
+            use HTML::HTML5::Builder qw[:standard];
+
+            my $document = html(
+                    -lang => 'en',
+                    head(
+                            title('Test', \(my $foo)),
+                            meta(-charset => 'utf-8'),
+                    ),
+                    body(
+                            h1('Test'),
+                            p('This is a test.')
+                    ),
+            );
+
+            $foo->setAttribute('lang', 'en-GB');
+
+            print $document;
+
+DESCRIPTION
+    This module can export function names corresponding to any HTML5
+    element.
+
+    Each function returns an XML::LibXML::Element. (Except the "html"
+    function itself, which returns an HTML::HTML5::Builder::Document
+    element, which inherits from XML::LibXML::Document.)
+
+    The arguments to each function are processed as a list. For each item on
+    that list:
+
+    *   if it's an XML::LibXML::Element, it's appended as a child of the
+        returned element
+
+    *   if it's an XML::LibXML::Attr, it's set on the returned element
+
+    *   if it's a string starting with a hyphen, then this item and the next
+        item on the list are used to set an attribute on the returned
+        element
+
+    *   otherwise, if it's a string, then it's appended to the returned
+        element as a text node
+
+    *   if it's a hashref, it's used to set attributes on the returned
+        element
+
+    *   if it's an arrayref, then the items on it are treated as if they
+        were on the argument list, except that the hyphen-attribute feature
+        is ignored
+
+    *   if it's a scalar reference, then the returned element is also
+        assigned to it
+
+  Exported Functions
+    None by default. Pretty much any HTML element you've ever dreamt of can
+    be exported on request though.
+
+    Export tags:
+
+    ":all" - all functions
+    ":standard" - elements that are not obsolete in HTML5
+    ":metadata" - head title base link meta style
+    ":sections" - body div section nav article aside h1 h2 h3 h4 h5 h6
+    header footer address
+    ":grouping" - p hr br pre dialog blockquote ol ul li dl dt dd
+    ":text" - a q cite em strong small mark dfn abbr time progress meter
+    code var samp kbd sub sup span i b bdo ruby rt rp
+    ":embedded" - figure img iframe embed object param video audio source
+    canvas map area
+    ":tabular" - table thead tbody tfoot th td colgroup col caption
+    ":form" - form fieldset label input button select datalist optgroup
+    option textarea output
+
+  Object Oriented Interface
+    You can also use these functions as methods of an object blessed into
+    the HTML::HTML5::Builder package.
+
+            my $b = HTML::HTML5::Builder->new;
+            my $document = $b->html(
+                    -lang => 'en',
+                    $b->head(
+                            $b->title('Test', \(my $foo)),
+                            $b->meta(-charset => 'utf-8'),
+                    ),
+                    $b->body(
+                            $b->h1('Test'),
+                            $b->p('This is a test.')
+                    ),
+            );
+
+  HTML::HTML5::Builder::Document
+    As mentioned above, "html()" returns an "HTML::HTML5::Builder::Document"
+    object. This inherits from "XML::LibXML::Document", but overloads
+    stringification using "HTML::HTML5::Writer".
+
+BUGS
+    Please report any bugs to
+    <http://rt.cpan.org/Dist/Display.html?Queue=HTML-HTML5-Builder>.
+
+SEE ALSO
+    XML::LibXML, HTML::HTML5::Writer.
+
+AUTHOR
+    Toby Inkster <tobyink@cpan.org>.
+
+COPYRIGHT AND LICENCE
+    This software is copyright (c) 2011 by Toby Inkster.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
+DISCLAIMER OF WARRANTIES
+    THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+    WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+    MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+
