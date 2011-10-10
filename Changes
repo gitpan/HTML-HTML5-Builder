@@ -5,6 +5,21 @@ Created:      2011-10-07
 Home page:    <https://metacpan.org/release/HTML-HTML5-Builder>
 Bug tracker:  <http://rt.cpan.org/Dist/Display.html?Queue=HTML-HTML5-Builder>
 
+0.002  2011-10-10
+
+ - Use autoloading to create functions.
+ - (Addition) RAW_CHUNK function.
+ - (Addition) CHUNK function.
+ - (Addition) XML_CHUNK function.
+ - (Addition) CREATIVE_COMMONS function.
+ - (Addition) OPENGRAPH function.
+ - (Addition) ELEMENT function.
+ - (Addition) JQUERY function.
+ - (Addition) Provide ucfirst equivalent functions for some HTML elements
+   with names that conflict with Perl built-ins.
+ - (Addition) COMMENT function.
+ - (Documentation) Explain usage with RDF::RDFa::Generator.
+
 0.001  2011-10-07
 # Initial release
 

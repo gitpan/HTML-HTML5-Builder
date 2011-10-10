@@ -15,3 +15,24 @@ dist:v_0-001
 	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/HTML-HTML5-Builder-0.001.tar.gz> ;
 	rdfs:label      "Initial release" .
 
+dist:project :release dist:v_0-002 .
+dist:v_0-002
+	a               :Version ;
+	dc:issued       "2011-10-10"^^xsd:date ;
+	:revision       "0.002"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/HTML-HTML5-Builder-0.002.tar.gz> ;
+	dcs:changeset [
+		dcs:versus dist:v_0-001 ;
+		dcs:item   [ a dcs:Documentation ; rdfs:label "Explain usage with RDF::RDFa::Generator."@en ] ;
+		dcs:item   [ a dcs:Addition ; rdfs:label "CHUNK function."@en ] ;
+		dcs:item   [ a dcs:Addition ; rdfs:label "RAW_CHUNK function."@en ] ;
+		dcs:item   [ a dcs:Addition ; rdfs:label "XML_CHUNK function."@en ] ;
+		dcs:item   [ a dcs:Addition ; rdfs:label "COMMENT function."@en ] ;
+		dcs:item   [ a dcs:Addition ; rdfs:label "ELEMENT function."@en ] ;
+		dcs:item   [ rdfs:label "Use autoloading to create functions."@en ] ;
+		dcs:item   [ a dcs:Addition ; rdfs:label "JQUERY function."@en ] ;
+		dcs:item   [ a dcs:Addition ; rdfs:label "OPENGRAPH function."@en ] ;
+		dcs:item   [ a dcs:Addition ; rdfs:label "Provide ucfirst equivalent functions for some HTML elements with names that conflict with Perl built-ins."@en ] ;
+		dcs:item   [ a dcs:Addition ; rdfs:label "CREATIVE_COMMONS function."@en ]
+		] .
+

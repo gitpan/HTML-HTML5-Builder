@@ -19,6 +19,7 @@ inc/Scalar/Util.pm
 inc/Scalar/Util/PP.pm
 inc/YAML/Tiny.pm
 lib/HTML/HTML5/Builder.pm
+lib/HTML/HTML5/Builder/Document.pm
 LICENSE
 Makefile.PL
 MANIFEST			This list of files
@@ -28,4 +29,5 @@ meta/doap.ttl
 meta/makefile.ttl
 README
 t/01basic.t
+t/02dt.t
 SIGNATURE                                Public-key signature (added by MakeMaker)
