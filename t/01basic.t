@@ -1,7 +1,6 @@
 use Test::More tests => 2;
 BEGIN { use_ok('HTML::HTML5::Builder') };
 
-use DateTime;
 HTML::HTML5::Builder->import(qw'meta :standard');
 
 my $document = html(

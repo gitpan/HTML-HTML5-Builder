@@ -13,7 +13,7 @@ BEGIN {
 	$HTML::HTML5::Builder::AUTHORITY = 'cpan:TOBYINK';
 }
 BEGIN {
-	$HTML::HTML5::Builder::VERSION   = '0.002';
+	$HTML::HTML5::Builder::VERSION   = '0.003';
 }
 
 use Carp 0 qw();
@@ -199,22 +199,50 @@ sub ELEMENT
 	return $EL;
 }
 
-sub AUTOLOAD
+sub _mksub
 {
-	my ($func) = our $AUTOLOAD =~ /::(\w+)$/;
+	no strict 'refs';
 	
-	Carp::croak("Undefined function") unless $func =~ /^(([A-Za-z][a-z]*)|([Hh][1-6]))$/;
-	Carp::croak("Undefined function") unless grep { lc $func eq $_ } @elements;
+	my ($function, $element) = @_;
+	$element = lc $function unless defined $element and length $element;
 	
-	my $element = lc $func;
 	my $sub = sub
 	{
 		shift if blessed($_[0]) && $_[0]->isa(__PACKAGE__);
 		return ELEMENT($element, @_);
 	};
-	*{$func} = $sub; # the function will be defined next time.
 	
+	return $sub;
+}
+
+sub AUTOLOAD
+{
+	my ($func) = our $AUTOLOAD =~ /::(\w+)$/;
+	Carp::croak("Undefined function") unless $func =~ /^(([A-Za-z][a-z]*)|([Hh][1-6]))$/;
+	Carp::croak("Undefined function") unless grep { lc $func eq $_ } @elements;	
+	my $sub = *{$func} = _mksub($func);
 	return $sub->(@_);
+}
+
+sub DESTROY {} # not AUTOLOAD
+
+# Thanks to AUTOLOAD, UNIVERSAL::can is a little broken here, so instead
+# we define out own can.
+sub can
+{
+	my ($class, $func) = @_;
+	
+	my $answer = UNIVERSAL::can(__PACKAGE__, $func)
+		|| __PACKAGE__->SUPER::can($func);
+	return $answer if $answer;
+	
+	if ($func =~ /^(([A-Za-z][a-z]*)|([Hh][1-6]))$/
+	and grep { lc $func eq $_ } @elements)
+	{
+		return _mksub($func);
+	}
+	
+	return;
 }
 
 sub TEXT
@@ -571,7 +599,8 @@ C<< S() >> and C<< Map() >> respectively, with an upper-case first letter. This 
 because each of these names corresponds to a built-in perl keyword (except meta,
 which is used by Moose). The lower-case versions of these do exist, and can be
 exported if you ask for them explicitly. The lower-case versions are also
-available as methods using the object-oriented syntax.
+available as methods using the object-oriented syntax. (In fact, lower case and ucfirst
+versions exist for all HTML elements - they're just not always exportable.)
 
 =head2 General Purpose Functions
 

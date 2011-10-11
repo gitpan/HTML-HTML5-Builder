@@ -93,7 +93,9 @@ DESCRIPTION
     built-in perl keyword (except meta, which is used by Moose). The
     lower-case versions of these do exist, and can be exported if you ask
     for them explicitly. The lower-case versions are also available as
-    methods using the object-oriented syntax.
+    methods using the object-oriented syntax. (In fact, lower case and
+    ucfirst versions exist for all HTML elements - they're just not always
+    exportable.)
 
   General Purpose Functions
     "ELEMENT($tagname, @arguments)"
