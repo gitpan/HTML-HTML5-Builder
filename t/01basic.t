@@ -13,7 +13,6 @@ my $document = html(
 	body(
 		h1('Test'),
 		p('This is a test.'),
-		CHUNK('<p>Another test.'),
 		XML_CHUNK('<p>Yet another test.</p><div>Foo</div>'),
 	),
 	RAW_CHUNK('<!--?>'),
@@ -22,5 +21,5 @@ my $document = html(
 $foo->setAttribute('lang', 'en-GB');
 
 is("$document",
-	'<!DOCTYPE html><html lang=en><title lang=en-GB>Test</title><!--Foo--><meta charset=utf-8><h1>Test</h1><p>This is a test.<p>Another test.<p>Yet another test.</p><div>Foo</div><!--?>',
+	'<!DOCTYPE html><html lang=en><title lang=en-GB>Test</title><!--Foo--><meta charset=utf-8><h1>Test</h1><p>This is a test.<p>Yet another test.</p><div>Foo</div><!--?>',
 	'Works.');

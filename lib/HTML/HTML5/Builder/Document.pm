@@ -13,7 +13,7 @@ BEGIN {
 	$HTML::HTML5::Builder::Document::AUTHORITY = 'cpan:TOBYINK';
 }
 BEGIN {
-	$HTML::HTML5::Builder::Document::VERSION   = '0.003';
+	$HTML::HTML5::Builder::Document::VERSION   = '0.004';
 }
 
 sub new

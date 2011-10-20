@@ -1,4 +1,5 @@
 Changes
+examples/ls-html.pl
 inc/Module/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm
@@ -27,6 +28,7 @@ META.yml
 meta/changes.ttl
 meta/doap.ttl
 meta/makefile.ttl
+out.html
 README
 t/01basic.t
 t/02dt.t

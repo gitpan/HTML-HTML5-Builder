@@ -13,7 +13,7 @@ BEGIN {
 	$HTML::HTML5::Builder::AUTHORITY = 'cpan:TOBYINK';
 }
 BEGIN {
-	$HTML::HTML5::Builder::VERSION   = '0.003';
+	$HTML::HTML5::Builder::VERSION   = '0.004';
 }
 
 use Carp 0 qw();
@@ -802,6 +802,18 @@ C<XML::LibXML::Node> objects.
     );
 
 Nice?
+
+=head2 Using with XML::LibXML::PrettyPrint
+
+HTML::HTML5::Builder doesn't nicely indent your markup, but
+L<XML::LibXML::PrettyPrint> can.
+
+  use HTML::HTML5::Builder qw(:standard);
+  use XML::LibXML::PrettyPrint qw(print_xml);
+  print_xml html(
+    head(title("Test")),
+    body(h1("Test"), p("This is a test.")),
+    );
 
 =head1 BUGS
 

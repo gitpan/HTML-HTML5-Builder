@@ -275,6 +275,17 @@ DESCRIPTION
 
     Nice?
 
+  Using with XML::LibXML::PrettyPrint
+    HTML::HTML5::Builder doesn't nicely indent your markup, but
+    XML::LibXML::PrettyPrint can.
+
+      use HTML::HTML5::Builder qw(:standard);
+      use XML::LibXML::PrettyPrint qw(print_xml);
+      print_xml html(
+        head(title("Test")),
+        body(h1("Test"), p("This is a test.")),
+        );
+
 BUGS
     Please report any bugs to
     <http://rt.cpan.org/Dist/Display.html?Queue=HTML-HTML5-Builder>.

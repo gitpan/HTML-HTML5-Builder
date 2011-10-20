@@ -18,6 +18,7 @@ module_name: HTML::HTML5::Builder
 name: HTML-HTML5-Builder
 no_index:
   directory:
+    - examples
     - inc
     - t
     - xt
@@ -33,4 +34,4 @@ resources:
   bugtracker: http://rt.cpan.org/Dist/Display.html?Queue=HTML-HTML5-Builder
   homepage: https://metacpan.org/release/HTML-HTML5-Builder
   license: http://dev.perl.org/licenses/
-version: 0.003
+version: 0.004
